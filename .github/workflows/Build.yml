@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+  schedule:
+    - cron: '*/144000 * * * *' # every 30 minutes
+  workflow_dispatch: # on button click
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede

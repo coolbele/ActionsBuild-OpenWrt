@@ -3,7 +3,7 @@ name: Build
 on:
   push:
   schedule:
-    - cron: '* 23 * * *' # every 30 minutes
+    - cron: '0 1 * * *' # every 30 minutes
   workflow_dispatch: # on button click
 
 env:

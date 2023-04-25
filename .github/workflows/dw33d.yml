@@ -7,8 +7,8 @@ on:
   workflow_dispatch: # on button click
 
 env:
-  REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: dev-19.07
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
   CONFIG_FILE: config/dw33d.config
   DIY1: shell/diy-by-packages.sh
   DIY2: shell/diy-by-config.sh

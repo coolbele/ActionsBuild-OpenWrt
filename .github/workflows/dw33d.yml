@@ -8,7 +8,7 @@ on:
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: openwrt-20.5.9
+  REPO_BRANCH: dev-20.5.9
   CONFIG_FILE: config/dw33d.config
   DIY1: shell/diy-by-packages.sh
   DIY2: shell/diy-by-config.sh

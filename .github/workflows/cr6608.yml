@@ -1,4 +1,4 @@
-name: Build
+name: cr6606
 
 on:
   push:

@@ -25,14 +25,17 @@ jobs:
     - name: 初始化
       env:
         DEBIAN_FRONTEND: noninteractive
-        run: |
-          docker rmi `docker images -q`
-          sudo -E apt update
-          sudo -E apt -y purge $(sed -n "1{s/\r$//g;p;q}" $GITHUB_WORKSPACE/Depends.txt)
-          sudo -E apt -y full-upgrade
-          sudo -E apt -y install $(sed -n "2{s/\r$//g;p;q}" $GITHUB_WORKSPACE/Depends.txt)
-          sudo -E apt -y autoremove --purge
-          sudo -E apt clean
+      run: |
+        docker rmi `docker images -q`
+        sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+        sudo -E apt-mark hold grub-efi-amd64-signed
+        sudo -E apt update
+        sudo -E apt -y purge android* azure* docker* dotnet* firefox* ghc* google* libgl1* llvm* mongodb* mono* mysql* openjdk* php* powershell* snap* zulu*
+        sudo -E apt -y full-upgrade
+        sudo -E apt -y install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler dos2unix ecj fakeroot fastjar flex g++-multilib gawk gcc-multilib genisoimage gettext git gnutls-dev gperf haveged help2man intltool jq libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5 libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool libyaml-dev libz-dev lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2 python3 python3-docutils python3-pip python3-ply python3-pyelftools python3-setuptools qemu-utils quilt re2c rsync scons squashfs-tools subversion swig texinfo uglifyjs unzip upx-ucl vim wget xmlto xxd zlib1g-dev
+        sudo -E systemctl daemon-reload
+        sudo -E apt -y autoremove --purge
+        sudo -E apt clean
 
     - name: 拉取openwrt源码
       run: |
